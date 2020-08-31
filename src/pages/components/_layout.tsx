@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
 import { BackTop, Space, Input, Divider } from 'antd';
 import Logo from '@/pages/components/logo';
+import { useParams } from 'umi';
 import './_layout.css';
 
 const { Search } = Input;
 
 const TopNav: FC<any> = ({ hiddenSearch }) => {
+  const { search } = useParams();
+
   return (
     <div className="nav-border">
       <Space align="start" size={20}>
@@ -27,8 +30,11 @@ const TopNav: FC<any> = ({ hiddenSearch }) => {
         >
           <Search
             placeholder="搜索你想搜索的任何资源"
-            onSearch={value => console.log(value)}
+            onSearch={value => {
+              if (value) window.location.href = `/search/${value}`;
+            }}
             enterButton
+            defaultValue={search ? search : ''}
           />
         </div>
       )}

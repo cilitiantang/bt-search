@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { connect } from 'umi';
+import { connect, useParams } from 'umi';
 import Layout from '@/pages/components/_layout';
 import { Card, Alert, Breadcrumb, Divider, Pagination, Result } from 'antd';
 
@@ -10,21 +10,25 @@ const page: FC<any> = ({
   search: { data, pageNum, total },
   dispatch,
 }) => {
+  const { search } = useParams();
+
   const changePage = (page: any) => {
     dispatch({
       type: `${namespace}/fetchList`,
       payload: {
-        key: '上海堡垒',
+        key: search,
         pageNum: page,
       },
     });
   };
 
   useEffect(() => {
+    document.title = search + ' - 种子搜索神器';
+
     dispatch({
       type: `${namespace}/fetchList`,
       payload: {
-        key: '上海堡垒',
+        key: search,
         pageNum: 1,
       },
     });
@@ -37,13 +41,14 @@ const page: FC<any> = ({
           <Breadcrumb.Item>
             <a href="/">首页</a>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>xxxxx</Breadcrumb.Item>
+          <Breadcrumb.Item>搜索</Breadcrumb.Item>
+          <Breadcrumb.Item>{search}</Breadcrumb.Item>
         </Breadcrumb>
 
         {loading && (
           <>
             <Alert
-              message="基于全网搜索，预计最多需要 10s，请您耐心等待 ..."
+              message="正在全网搜索，预计最多需要 10s，请您耐心等待 ..."
               type="success"
               style={{ marginBottom: '15px' }}
               showIcon
@@ -78,15 +83,16 @@ const page: FC<any> = ({
                         <a
                           style={{ fontSize: '18px' }}
                           dangerouslySetInnerHTML={{ __html: item.name }}
+                          href={`/detail/${item.realid.slice(6)}`}
                         />
                       </b>
                       <p style={{ margin: '10px 0', fontWeight: 'bold' }}>
                         文件大小：{item.filesize} <Divider type="vertical" />
                         创建时间：{item.time}
                       </p>
-                      {(JSON.parse(item.filelist) || []).map(
+                      {(JSON.parse(item.filelist || '[]') || []).map(
                         (e: any, index: number) => (
-                          <p
+                          <div
                             key={index}
                             dangerouslySetInnerHTML={{ __html: e.name }}
                           />

@@ -18,7 +18,9 @@ const page = () => {
           搜索你想搜索的任何资源 😁
         </p>
         <Search
-          onSearch={value => console.log(value)}
+          onSearch={value => {
+            if (value) window.location.href = `/search/${value}`;
+          }}
           enterButton
           size="large"
         />

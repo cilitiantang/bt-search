@@ -18,6 +18,11 @@ export default defineConfig({
       component: '@/pages/search',
       title: '搜索列表 - 种子搜索神器',
     },
+    {
+      path: '/detail/:hash',
+      component: '@/pages/detail',
+      title: '详情页 - 种子搜索神器',
+    },
   ],
   theme: {
     '@primary-color': '#FF6347',
