@@ -6,6 +6,14 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  links: [
+    {
+      rel: 'icon',
+      href:
+        'https://gw.alipayobjects.com/mdn/afts/img/A*tF_ZT5B56RUAAAAAAAAAAABjARQnAQ/original?bz=rms',
+      type: 'image/x-icon',
+    },
+  ],
   routes: [
     {
       path: '/',

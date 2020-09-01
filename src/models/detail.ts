@@ -1,4 +1,4 @@
-import { getDetail } from '@/services/main';
+import { getDetail, doIp } from '@/services/main';
 
 export default {
   namespace: 'detail',
@@ -12,6 +12,9 @@ export default {
         type: 'save',
         payload: res,
       });
+    },
+    *fetchIp(_: any, { call }: any) {
+      yield call(doIp);
     },
   },
   reducers: {

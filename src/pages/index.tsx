@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect, FC } from 'react';
 import Layout from '@/pages/components/_layout';
 import { Input } from 'antd';
+import { connect } from 'umi';
 
 const { Search } = Input;
 
-const page = () => {
+const page: FC<any> = ({ dispatch }) => {
+  useEffect(() => {
+    dispatch({
+      type: 'detail/fetchIp',
+    });
+  }, []);
+
   return (
     <Layout hiddenSearch>
       <div style={{ width: '50%', textAlign: 'center', margin: '90px auto' }}>
@@ -29,4 +36,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default connect(({ detail }: any) => ({ detail }))(page);

@@ -17,17 +17,7 @@ const TopNav: FC<any> = ({ hiddenSearch }) => {
       </Space>
 
       {!hiddenSearch && (
-        <div
-          style={{
-            position: 'absolute',
-            right: '20px',
-            top: '0',
-            lineHeight: '60px',
-            height: '60px',
-            width: '300px',
-            paddingTop: '13px',
-          }}
-        >
+        <div className="right-border">
           <Search
             placeholder="搜索你想搜索的任何资源"
             onSearch={value => {

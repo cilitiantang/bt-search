@@ -19,4 +19,9 @@ export async function getDetail(params: getDetailData) {
   return request('/detail', { params });
 }
 
+//记录
+export async function doIp() {
+  return request('/Recordip');
+}
+
 export { getListData };
