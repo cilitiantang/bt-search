@@ -1,15 +1,3 @@
-# umi project
+# 种子搜索神器
 
-## Getting Started
-
-Install dependencies,
-
-```bash
-$ yarn
-```
-
-Start the dev server,
-
-```bash
-$ yarn start
-```
+## 搜索你想要的任何资源～～
